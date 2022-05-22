@@ -1,0 +1,33 @@
+body {
+  background-color:#3fadd8;
+}
+
+.register {
+  background: #fc9803;
+  width: 400px;
+  margin: 150px auto;
+  padding: 10px;
+  height: 500px;
+  max-width: 350px;
+  border-radius: 6px;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 8px;
+  margin: 10px;
+}
+
+button {
+  padding: 8px;
+  margin: 10px;
+}
+
+.passwordWarning {
+  background: #fc1403;
+  padding: 10px;
+}

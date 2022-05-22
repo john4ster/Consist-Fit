@@ -1,0 +1,41 @@
+.WeeklyDay {
+  background-color: white;
+  max-height: 330px;
+}
+
+.dayDate {
+  padding: 10px;
+  width: 200px;
+  outline-color: black;
+  outline-style: solid;
+}
+
+.day {
+  margin-bottom: 0px;
+}
+
+.date {
+  font-weight: normal;
+  font-size: 15px;
+  margin-top: 0px;
+}
+
+.filledCheckBubble {
+  transform: scale(1.5);
+  margin-top: 80px;
+  color: #23db26;
+}
+
+.emptyCheckBubble {
+  transform: scale(1.5);
+  margin-top: 80px;
+}
+
+.status {
+  padding: 10px;
+  width: 200px;
+  height: 200px;
+  outline-color: black;
+  outline-style: solid;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,108 @@
+const express = require("express");
+const app = express();
+const bodyParser = require('body-parser')
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const UserModel = require('./models/users');
+require('dotenv').config();
+
+//Set up body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+mongoose.connect(process.env.DATABASE_LINK);
+
+app.post('/auth/register', async (req, res) => {
+  try {
+    //Salt and hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+    //Create new user
+    const newUser = new UserModel({
+      email: req.body.email,
+      password: hashedPassword,
+    });
+
+    //Save the user
+    const user = await newUser.save();
+    console.log("New user registered");
+    res.status(200).json(user);
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+app.post('/auth/login', async (req, res) => {
+  try {
+    //See if the user exists
+    await UserModel.findOne({email: req.body.email})
+    .then(async result => {
+      //If a result was not found, the user does not exist
+      if (!result) {
+        res.status(404).send("User not found");
+      }
+      //If a result was found, the user exists, check the password
+      else {
+        await bcrypt.compare(req.body.password, result.password) //Compare the passwords
+        .then(validPassword => {
+          //If the passwords don't match, do not log the user in 
+          if (!validPassword) { 
+            res.status(500).send("Wrong Password"); 
+          }
+          //If the user passed all previous checks, send back the user id for authentication
+          res.status(200).json(result._id);
+        });
+      }
+    });
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+//Route to post a new date for the user
+app.post('/addDate', (req, res) => {
+  try {
+    const userID = req.body.userID;
+    const newDate = req.body.newDate;
+    UserModel.updateOne({_id: req.body.userID}, {$push: {checkedDates: newDate}})
+    .then(() => {
+      res.status(200).send("New Date Added");
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+  catch(err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+//Route to get dates the user has checked off this week
+app.get('/weeklyChecks', (req, res) => {
+  try {
+    const userID = req.query.userID;
+    //May need to use mongoDB's find function
+    UserModel.findById(userID)
+    .then(result => {
+      res.status(200).send(result.checkedDates);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+const port = 3001
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});

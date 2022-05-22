@@ -1,0 +1,28 @@
+body {
+  background-color:#3fadd8;
+}
+
+.login {
+  background: #fc9803;
+  width: 400px;
+  margin: 150px auto;
+  padding: 10px;
+  height: 400px;
+  max-width: 350px;
+  border-radius: 6px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 8px;
+  margin: 10px;
+}
+
+button {
+  padding: 8px;
+  margin: 10px;
+}
