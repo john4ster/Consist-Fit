@@ -10,9 +10,13 @@ import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
 function CalendarView() {
 
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
   const today = new Date();
-  const monthString = today.toDateString().substring(4, 7);
-  const yearString = today.toDateString().substring(10);
+  const [monthNum, setMonthNum] = useState(today.getMonth());
+  const [yearNum, setYearNum] = useState(today.getFullYear());
+  const monthString = monthNames[monthNum];
+  const yearString = yearNum.toString();
   const { userID } = useContext(AuthContext);
   const [checkedDates, setCheckedDates] = useState([]);
 
@@ -27,6 +31,7 @@ function CalendarView() {
     });
   }, [userID]);
 
+  //Get all days in the selected month
   const getDaysInMonth = (month, year) => {
     let date = new Date(year, month, 1);
     let days = [];
@@ -40,20 +45,33 @@ function CalendarView() {
   //Change the month by going back one month or forward one month
   const changeMonth = (direction) => {
     if (direction === "forward") {
-      console.log("forward");
+      if (monthNum === 11) { //If the month is December, advance to January of the next year
+        setMonthNum(0);
+        setYearNum(yearNum + 1);
+      }
+      else {
+        setMonthNum(monthNum + 1);
+      }
     }
     else {
-      console.log("backward");
+      if (monthNum === 0) { //If the month is January, go back to December of the last year
+        setMonthNum(11);
+        setYearNum(yearNum - 1);
+      }
+      else {
+        setMonthNum(monthNum - 1);
+      }
     }
   }
 
-  const days = getDaysInMonth(today.getMonth(), today.getFullYear());
+  //Get all the days in the selected month
+  const days = getDaysInMonth(monthNum, yearNum);
 
   return (
     <div className="CalendarView">
       <div className="calendarHeader">
         <ArrowCircleLeftIcon className="arrow" fontSize="large" onClick={e => changeMonth("backward")}/>
-        <h1 className="monthTitle">{monthString + yearString}</h1>
+        <h1 className="monthTitle">{monthString + " " + yearString}</h1>
         <ArrowCircleRightIcon className="arrow" fontSize="large" onClick={e => changeMonth("forward")}/>
       </div>
       <div className="days">
