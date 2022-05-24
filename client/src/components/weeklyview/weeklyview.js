@@ -6,7 +6,7 @@ function WeeklyView({ today, checkedDates }) {
   //Get the first day of the week using today's date
   const getSunday = (date) => {
     const day = date.getDay();  
-    if(day !== 1) {
+    if(day !== 0) {
       date.setHours(-24 * (day)); 
     }
     return date;

@@ -19,13 +19,13 @@ function Sidebar({ homeSelected, workoutsSelected, calendarSelected }) {
   return (
     <div className="Sidebar">
       <div className="navIcons">
-        <Link to="/" style={ homeSelected ? { color: "#3fadd8" } : { color: "black" } }>
-          <HomeIcon selectedIconclassName="icon" fontSize="large" />
+        <Link to="/" style={ homeSelected ? { color: "#479bbd" } : { color: "black" } }>
+          <HomeIcon className="icon" fontSize="large" />
         </Link>
-        <Link to="/workouts" style={workoutsSelected ? { color: "#3fadd8" } : { color: "black" }}>
+        <Link to="/workouts" style={workoutsSelected ? { color: "#479bbd" } : { color: "black" }}>
           <FitnessCenterIcon className="icon" fontSize="large" />
         </Link>
-        <Link to="/calendar" style={calendarSelected ? { color: "#3fadd8" } : { color: "black" }}>
+        <Link to="/calendar" style={calendarSelected ? { color: "#479bbd" } : { color: "black" }}>
           <EventAvailableIcon className="icon" fontSize="large" />
         </Link>
       </div>

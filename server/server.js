@@ -69,7 +69,7 @@ app.post('/addDate', (req, res) => {
   try {
     const userID = req.body.userID;
     const newDate = req.body.newDate;
-    UserModel.updateOne({_id: req.body.userID}, {$push: {checkedDates: newDate}})
+    UserModel.updateOne({_id: userID}, {$push: {checkedDates: newDate}})
     .then(() => {
       res.status(200).send("New Date Added");
     })

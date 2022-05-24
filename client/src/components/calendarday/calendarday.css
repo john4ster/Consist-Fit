@@ -1,0 +1,27 @@
+.CalendarDay {
+  padding: 12px;
+  border-style: solid;
+  width: 230px;
+  background-color: white;
+}
+
+.dayNum {
+  margin-left: 85%;
+  margin-top: 0px;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.bubble {
+  display: flex;
+}
+
+.filledCheckBubble {
+  margin-top: 80px;
+  color: #0e8610;
+  color: #23db26;
+}
+
+.emptyCheckBubble {
+  margin-bottom: 10px;
+}

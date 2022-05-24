@@ -29,7 +29,7 @@ function Home() {
   //Handle user adding a new date
   const handleNewDate = (e) => {
     e.preventDefault();
-    let todayDate = today.setHours(0, 0, 0, 0);
+    let todayDate = new Date().setHours(0, 0, 0, 0);
     let info = {
       userID: userID,
       newDate: todayDate,
