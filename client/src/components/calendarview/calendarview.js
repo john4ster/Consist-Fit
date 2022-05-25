@@ -22,7 +22,7 @@ function CalendarView() {
 
   useEffect(() => {
     //Make a request to the server to get dates the user has checked off
-    axios.get('/weeklyChecks', { params: {userID} })
+    axios.get('/userData/checkedDates', { params: {userID} })
     .then(res => {
       setCheckedDates(res.data);
     })

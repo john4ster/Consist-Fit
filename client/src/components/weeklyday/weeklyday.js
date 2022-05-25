@@ -12,7 +12,7 @@ function WeeklyDay({ day, date, workoutCompleted }) {
       </div>
       <div className="status">
         {workoutCompleted 
-        ? <CheckCircleIcon className="filledCheckBubble" fontSize="large" /> 
+        ? <CheckCircleIcon className="filledCheckBubble" fontSize="large"  /> 
         : <RadioButtonUncheckedIcon className="emptyCheckBubble" fontSize="large" />}
       </div>
     </div>

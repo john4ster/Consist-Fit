@@ -83,11 +83,34 @@ app.post('/addDate', (req, res) => {
   }
 });
 
+//Route to post a new workout for the user
+app.post('/addWorkout', (req, res) => {
+  try {
+    const userID = req.body.userID;
+    const workoutName = req.body.name;
+    const exercises = req.body.exercises;
+    const workout = {
+      name: workoutName,
+      exercises: exercises,
+    }
+    UserModel.updateOne({_id: userID}, {$push: {workouts: workout}})
+    .then(() => {
+      res.status(200).send("New Workout Added");
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+  catch(err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
+
 //Route to get dates the user has checked off this week
-app.get('/weeklyChecks', (req, res) => {
+app.get('/userData/checkedDates', (req, res) => {
   try {
     const userID = req.query.userID;
-    //May need to use mongoDB's find function
     UserModel.findById(userID)
     .then(result => {
       res.status(200).send(result.checkedDates);
@@ -100,6 +123,18 @@ app.get('/weeklyChecks', (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
+});
+
+//Route to get the user's saved workouts
+app.get('/userData/workouts', (req, res) => {
+  const userID = req.query.userID;
+  UserModel.findById(userID)
+  .then(result => {
+    res.status(200).send(result.workouts);
+  })
+  .catch(err => {
+      console.log(err);
+  });
 });
 
 const port = 3001
