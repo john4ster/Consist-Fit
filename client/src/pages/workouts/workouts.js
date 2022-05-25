@@ -63,7 +63,6 @@ function Workouts() {
   const prepareForUpload = (exercises) => {
     let arr = [];
     for (let i = 0; i < exercises.length; i++) {
-      console.log(exercises[i].name);
       if (exercises[i].name !== undefined) {
         arr.push(exercises[i].name);
       }
@@ -79,7 +78,6 @@ function Workouts() {
         name: newWorkoutName,
         exercises: fullExercises,
       }
-      console.log(newWorkoutName);
       axios.post('/addWorkout', info)
       .then(res => {
         setModalOpen(false);
