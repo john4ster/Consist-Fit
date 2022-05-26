@@ -89,9 +89,11 @@ app.post('/addWorkout', (req, res) => {
     const userID = req.body.userID;
     const workoutName = req.body.name;
     const exercises = req.body.exercises;
+    const days = req.body.days;
     const workout = {
       name: workoutName,
       exercises: exercises,
+      days: days,
     }
     UserModel.updateOne({_id: userID}, {$push: {workouts: workout}})
     .then(() => {

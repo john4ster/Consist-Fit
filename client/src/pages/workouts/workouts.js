@@ -1,13 +1,12 @@
 import './workouts.css';
 import Sidebar from '../../components/sidebar/sidebar';
 import { useState } from 'react';
-import NewWorkoutModal from '../../components/workoutModal/workoutModal';
-
-const key = require('weak-key');
+import NewWorkoutModal from '../../components/workoutModal/newWorkoutModal';
 
 function Workouts() {
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [workouts, setWorkouts] = useState([]);
   const closeModalCallback = () => setModalOpen(false);
 
   return (
