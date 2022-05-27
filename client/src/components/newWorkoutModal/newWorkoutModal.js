@@ -9,7 +9,7 @@ Modal.setAppElement('#root');
 const key = require('weak-key');
 
 function NewWorkoutModal({ modalOpen, closeModalCallback }) {
-  
+
   const { userID } = useContext(AuthContext);
   const [newWorkoutName, setNewWorkoutName] = useState('');
   const [sundayChecked, setSundayChecked] = useState(false);

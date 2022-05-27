@@ -3,8 +3,10 @@ import Sidebar from '../../components/sidebar/sidebar';
 import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
-import NewWorkoutModal from '../../components/workoutModal/newWorkoutModal';
+import NewWorkoutModal from '../../components/newWorkoutModal/newWorkoutModal';
 import WorkoutCard from '../../components/workoutCard/workoutCard';
+
+const key = require('weak-key');
 
 function Workouts() {
 
@@ -20,7 +22,7 @@ function Workouts() {
     })
     .catch(err => {
       console.log(err);
-    })
+    });
   }, [userID]);
 
   return (
@@ -39,7 +41,7 @@ function Workouts() {
       </div>
 
       <button className="addWorkoutButton" onClick={() => setModalOpen(true)}>Add Workout</button>
-      <NewWorkoutModal modalOpen={modalOpen} closeModalCallback={closeModalCallback} />
+      <NewWorkoutModal modalOpen={modalOpen} mode={'new'} closeModalCallback={closeModalCallback} />
     </div>
   );
 }

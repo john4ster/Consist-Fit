@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.header {
+  position: relative;
+}
+
 .header h2 {
   font-size: 30px;
   text-decoration: underline;
@@ -47,4 +51,12 @@
   margin-left: 5%;
   margin-top: -6.6%;
   height: 100vh;
+}
+
+.deleteButton {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70px;
+  cursor: pointer
 }

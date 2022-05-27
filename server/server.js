@@ -107,7 +107,27 @@ app.post('/addWorkout', (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
-})
+});
+
+//Route to delete a workout for the user
+app.post('/userData/deleteWorkout', (req, res) => {
+  try {
+    const userID = req.body.userID;
+    const workout = req.body.workout;
+    const workoutName = workout.name;
+    UserModel.updateOne({_id: userID}, { $pull: { workouts: { name: workoutName } }})
+    .then(() => {
+      res.status(200).send('Workout Deleted');
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+  catch(err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 //Route to get dates the user has checked off this week
 app.get('/userData/checkedDates', (req, res) => {
