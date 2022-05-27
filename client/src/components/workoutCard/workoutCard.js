@@ -15,6 +15,9 @@ function WorkoutCard({ workout }) {
           )
         })}
       </div>
+
+      <div className="line"></div>
+
       <div className="exercises">
         <h3>Exercises</h3>
         {workout.exercises.map((exercise) => {
