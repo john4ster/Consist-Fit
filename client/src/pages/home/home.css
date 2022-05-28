@@ -4,13 +4,15 @@ body {
 }
 
 .WeeklyView {
-  margin-top: 300px;
-  margin-left: 100px;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  margin-top: 20%;
+  margin-left: 20%;
 }
 
-.checkArea {
+.homeArea {
   display: flex;
-  flex-direction: row;
 }
 
 .checkupBox {

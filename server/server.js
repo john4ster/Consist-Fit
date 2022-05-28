@@ -83,6 +83,37 @@ app.post('/addDate', (req, res) => {
   }
 });
 
+//Route to handle a workout being checked or unchecked
+app.post('/checkDate', (req, res) => {
+  try {
+    const userID = req.body.userID;
+    const date = req.body.date;
+    const checked = req.body.checked;
+    if (checked) {
+      UserModel.updateOne({_id: userID}, {$pull: {checkedDates: date}})
+      .then(() => {
+        res.status(200).send("Date Unchecked");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
+    else {
+      UserModel.updateOne({_id: userID}, {$push: {checkedDates: date}})
+      .then(() => {
+        res.status(200).send("Date Checked Added");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
+  }
+  catch(err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 //Route to post a new workout for the user
 app.post('/addWorkout', (req, res) => {
   try {

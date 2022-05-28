@@ -45,13 +45,13 @@ function WeeklyView({ today, checkedDates }) {
     <div className="WeeklyView">
       <h1 className="WeeklyTitle">Week of { weekOfString }</h1>
       <div className="WeeklyDays">
-        <WeeklyDay day="Sunday" date={ sundayDate.toDateString().slice(3, -4) } workoutCompleted={suChecked}/>
-        <WeeklyDay day="Monday" date={ mondayDate.toDateString().slice(3, -4) } workoutCompleted={moChecked}/>
-        <WeeklyDay day="Tuesday" date={ tuesdayDate.toDateString().slice(3, -4) } workoutCompleted={tuChecked}/>
-        <WeeklyDay day="Wednesday" date={ wednesdayDate.toDateString().slice(3, -4) } workoutCompleted={weChecked}/>
-        <WeeklyDay day="Thursday" date={ thursdayDate.toDateString().slice(3, -4) } workoutCompleted={thChecked}/>
-        <WeeklyDay day="Friday" date={ fridayDate.toDateString().slice(3, -4) } workoutCompleted={frChecked}/>
-        <WeeklyDay day="Saturday" date={ saturdayDate.toDateString().slice(3, -4) } workoutCompleted={saChecked}/>
+        <WeeklyDay day="Sunday" date={sundayDate} workoutCompleted={suChecked}/>
+        <WeeklyDay day="Monday" date={mondayDate} workoutCompleted={moChecked}/>
+        <WeeklyDay day="Tuesday" date={tuesdayDate} workoutCompleted={tuChecked}/>
+        <WeeklyDay day="Wednesday" date={wednesdayDate} workoutCompleted={weChecked}/>
+        <WeeklyDay day="Thursday" date={thursdayDate} workoutCompleted={thChecked}/>
+        <WeeklyDay day="Friday" date={fridayDate} workoutCompleted={frChecked}/>
+        <WeeklyDay day="Saturday" date={saturdayDate} workoutCompleted={saChecked}/>
       </div>
     </div>
   );

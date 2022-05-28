@@ -2,7 +2,7 @@ import './calendarday.css';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 
-function CalendarDay({ date, checked}) {
+function CalendarDay({ date, checked }) {
 
   const day = date.getDate();
 

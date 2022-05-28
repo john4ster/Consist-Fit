@@ -24,11 +24,13 @@
   transform: scale(1.5);
   margin-top: 80px;
   color: #23db26;
+  cursor: pointer;
 }
 
 .emptyCheckBubble {
   transform: scale(1.5);
   margin-top: 80px;
+  cursor: pointer;
 }
 
 .status {
