@@ -29,7 +29,7 @@ function CalendarView() {
     .catch(err => {
       console.log(err);
     });
-  }, [userID]);
+  }, [userID, checkedDates]);
 
   //Get all days in the selected month
   const getDaysInMonth = (month, year) => {
@@ -70,9 +70,9 @@ function CalendarView() {
   return (
     <div className="CalendarView">
       <div className="calendarHeader">
-        <ArrowCircleLeftIcon className="arrow" fontSize="large" onClick={e => changeMonth("backward")}/>
+        <ArrowCircleLeftIcon className="arrow" fontSize="large" onClick={() => changeMonth("backward")}/>
         <h1 className="monthTitle">{monthString + " " + yearString}</h1>
-        <ArrowCircleRightIcon className="arrow" fontSize="large" onClick={e => changeMonth("forward")}/>
+        <ArrowCircleRightIcon className="arrow" fontSize="large" onClick={() => changeMonth("forward")}/>
       </div>
       <div className="days">
         {days.map(d => (
