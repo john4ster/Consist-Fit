@@ -64,25 +64,6 @@ app.post('/auth/login', async (req, res) => {
   }
 });
 
-//Route to post a new date for the user
-app.post('/addDate', (req, res) => {
-  try {
-    const userID = req.body.userID;
-    const newDate = req.body.newDate;
-    UserModel.updateOne({_id: userID}, {$push: {checkedDates: newDate}})
-    .then(() => {
-      res.status(200).send("New Date Added");
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
-  catch(err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
 //Route to handle a workout being checked or unchecked
 app.post('/checkDate', (req, res) => {
   try {
