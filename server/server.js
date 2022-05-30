@@ -20,8 +20,8 @@ app.post('/auth/register', async (req, res) => {
 
     //Create new user
     const newUser = new UserModel({
-      email: req.body.email,
-      password: hashedPassword,
+      "email": req.body.email,
+      "password": hashedPassword,
     });
 
     //Save the user
@@ -38,7 +38,7 @@ app.post('/auth/register', async (req, res) => {
 app.post('/auth/login', async (req, res) => {
   try {
     //See if the user exists
-    await UserModel.findOne({email: req.body.email})
+    await UserModel.findOne({"email": req.body.email})
     .then(async result => {
       //If a result was not found, the user does not exist
       if (!result) {
@@ -71,7 +71,7 @@ app.post('/checkDate', (req, res) => {
     const date = req.body.date;
     const checked = req.body.checked;
     if (checked) {
-      UserModel.updateOne({_id: userID}, {$pull: {checkedDates: date}})
+      UserModel.updateOne({"_id": userID}, {$pull: {"checkedDates": date}})
       .then(() => {
         res.status(200).send("Date Unchecked");
       })
@@ -80,7 +80,7 @@ app.post('/checkDate', (req, res) => {
       });
     }
     else {
-      UserModel.updateOne({_id: userID}, {$push: {checkedDates: date}})
+      UserModel.updateOne({"_id": userID}, {$push: {"checkedDates": date}})
       .then(() => {
         res.status(200).send("Date Checked Added");
       })
@@ -110,7 +110,7 @@ app.post('/addWorkout', (req, res) => {
       days: days,
       shownOnWeekly: shownOnWeekly,
     }
-    UserModel.updateOne({_id: userID}, {$push: {workouts: workout}})
+    UserModel.updateOne({"_id": userID}, {$push: { "workouts": workout }})
     .then(() => {
       res.status(200).send("New Workout Added");
     })
@@ -124,13 +124,49 @@ app.post('/addWorkout', (req, res) => {
   }
 });
 
+//Route to edit a workout for the user
+app.post('/editWorkout', (req, res) => {
+  try {
+    const userID = req.body.userID;
+    const oldWorkoutName = req.body.oldName;
+    const newWorkoutName = req.body.newName;
+    const exercises = req.body.exercises;
+    const days = req.body.days
+    const shownOnWeekly = req.body.shownOnWeekly;
+    UserModel.findOneAndUpdate(
+      {
+        "_id": userID, 
+        "workouts": { 
+          $elemMatch: { "name": oldWorkoutName } 
+        }
+      },
+      {
+        "workouts.$.name": newWorkoutName,
+        "workouts.$.exercises": exercises,
+        "workouts.$.days": days,
+        "workouts.$.shownOnWeekly": shownOnWeekly,
+      },
+    )
+    .then(() => {
+      res.status(200).send('Workout Updated');
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+  catch(err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
+
 //Route to delete a workout for the user
-app.post('/userData/deleteWorkout', (req, res) => {
+app.post('/deleteWorkout', (req, res) => {
   try {
     const userID = req.body.userID;
     const workout = req.body.workout;
     const workoutName = workout.name;
-    UserModel.updateOne({_id: userID}, { $pull: { workouts: { name: workoutName } }})
+    UserModel.updateOne({"_id": userID}, { $pull: { "workouts": { "name": workoutName } }})
     .then(() => {
       res.status(200).send('Workout Deleted');
     })

@@ -1,8 +1,9 @@
 import './newWorkoutModal.css';
 import Modal from 'react-modal';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
+import { getCheckedDays, prepareExercisesForUpload, addExerciseSlot, removeExerciseSlot, addExercise } from '../Utils';
 
 Modal.setAppElement('#root');
 
@@ -38,37 +39,6 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
     setShownOnWeeklyView(false);
   }
 
-  const addExerciseSlot = () => { 
-    let exKey = key({}); //Generate key to be used in input
-    if (exercises.length < 15) {
-      setExercises([...exercises, {id: exKey}]);
-    }
-  }
-
-  const removeExerciseSlot = () => {
-    if (exercises.length > 1) {
-      setExercises(exercises.slice(0, -1));
-    }
-  }
-
-  //Add exercise to the list
-  const addExercise = (e, name, index) => {
-    e.preventDefault();
-    const newExercise = {
-      id: exercises[index].id,
-      name: name
-    }; 
-    const newExercises = exercises.map((exercise, i) => {
-      if (i === index) {
-        return newExercise;
-      }
-      else {
-        return exercise;
-      }
-    });
-    setExercises(newExercises);
-  }
-
   //Handle a day checkbox being checked or unchecked
   const handleCheck = (check) => {
     switch(check) {
@@ -83,35 +53,13 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
     }
   }
 
-  const getCheckedDays = () => {
-    let days = [];
-    if (sundayChecked) { days.push('Sunday'); }
-    if (mondayChecked) { days.push('Monday'); }
-    if (tuesdayChecked) { days.push('Tuesday'); }
-    if (wednesdayChecked) { days.push('Wednesday'); }
-    if (thursdayChecked) { days.push('Thursday'); }
-    if (fridayChecked) { days.push('Friday'); }
-    if (saturdayChecked) { days.push('Saturday'); }
-    return days;
-  }
-
-  //Remove any empty slots from the exercises array so they aren't posted
-  //Also only get the names from the exercise objects, as the id is only used client side
-  const prepareForUpload = (exercises) => {
-    let arr = [];
-    for (let i = 0; i < exercises.length; i++) {
-      if (exercises[i].name !== undefined) {
-        arr.push(exercises[i].name);
-      }
-    }
-    return arr;
-  }
-
   //Send workout data to backend for saving
   const saveNewWorkout = () => {
     try {
-      let fullExercises = prepareForUpload(exercises);
-      let days = getCheckedDays();
+      let fullExercises = prepareExercisesForUpload(exercises);
+      let checkedArr = [sundayChecked, mondayChecked, tuesdayChecked, wednesdayChecked, thursdayChecked,
+        fridayChecked, saturdayChecked];
+      let days = getCheckedDays(checkedArr);
       let info = {
         userID: userID,
         name: newWorkoutName,
@@ -188,8 +136,10 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
             <div className="middleHeader">
               <h1 className="exercisesTitle">Exercises</h1>
               <div className="exerciseOptions">
-                <button className="addExercise" onClick={addExerciseSlot}>Add Exercise</button>
-                <button className="removeExercise" onClick={removeExerciseSlot}>Remove Exercise</button>
+                <button className="addExercise" 
+                onClick={() => setExercises(addExerciseSlot(exercises))}>Add Exercise</button>
+                <button className="removeExercise" 
+                onClick={() => setExercises(removeExerciseSlot(exercises))}>Remove Exercise</button>
               </div>
             </div>
             <div className="middleInputs">
@@ -200,7 +150,7 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
                 type="text" 
                 placeholder={"Exercise " + (i + 1)}
                 value={x.name ? x.name : ''}
-                onChange={e => addExercise(e, e.target.value, i)}/>
+                onChange={e => setExercises(addExercise(e, e.target.value, i, exercises))}/>
                 )
               })}
             </div>
