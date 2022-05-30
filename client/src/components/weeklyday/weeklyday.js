@@ -5,7 +5,7 @@ import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 
-function WeeklyDay({ day, date, workoutCompleted, workout }) {
+function WeeklyDay({ day, date, workoutCompleted, workouts }) {
 
   const { userID } = useContext(AuthContext);
   const dateString = date.toDateString().slice(3, -7) + date.getDate();
@@ -41,7 +41,11 @@ function WeeklyDay({ day, date, workoutCompleted, workout }) {
       <div className="dayDate">
         <h2 className="day">{day}</h2>
         <p className="date">{dateString}</p>
-        <p className="workout">{workout?.name}</p>
+        {workouts?.map((workout) => {
+          return (
+            <p className="workout">{workout.name}</p>
+          )
+        })}
       </div>
       <div className="status">
         {workoutCompleted 

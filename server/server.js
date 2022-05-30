@@ -96,16 +96,19 @@ app.post('/checkDate', (req, res) => {
 });
 
 //Route to post a new workout for the user
+//Need to limit weekly views eventually to 1 or 2
 app.post('/addWorkout', (req, res) => {
   try {
     const userID = req.body.userID;
     const workoutName = req.body.name;
     const exercises = req.body.exercises;
     const days = req.body.days;
+    const shownOnWeekly = req.body.shownOnWeekly;
     const workout = {
       name: workoutName,
       exercises: exercises,
       days: days,
+      shownOnWeekly: shownOnWeekly,
     }
     UserModel.updateOne({_id: userID}, {$push: {workouts: workout}})
     .then(() => {

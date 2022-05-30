@@ -61,15 +61,16 @@ function WeeklyView({ today, checkedDates }) {
   //Function to get the workout for a certain day
   //For now, we just get the first element, but there will be an option added for the user to select which
   //workout they want to be displayed on the weekly view
-  const getWorkout = (day) => {
+  const getWorkouts = (day) => {
     switch(day) {
-      case 'Sunday': return (workouts.filter((workout) => workout.days.includes("Sunday")))[0];
-      case 'Monday': return workouts.filter((workout) => workout.days.includes("Monday"))[0];
-      case 'Tuesday': return workouts.filter((workout) => workout.days.includes("Tuesday"))[0];
-      case 'Wednesday': return workouts.filter((workout) => workout.days.includes("Wednesday"))[0];
-      case 'Thursday': return workouts.filter((workout) => workout.days.includes("Thursday"))[0];
-      case 'Friday': return workouts.filter((workout) => workout.days.includes("Friday"))[0];
-      case 'Saturday': return workouts.filter((workout) => workout.days.includes("Saturday"))[0];
+      case 'Sunday': return workouts.filter((workout) => workout.days.includes("Sunday") && workout.shownOnWeekly);
+      case 'Monday': return workouts.filter((workout) => workout.days.includes("Monday") && workout.shownOnWeekly);
+      case 'Tuesday': return workouts.filter((workout) => workout.days.includes("Tuesday") && workout.shownOnWeekly);
+      case 'Wednesday': return workouts.filter((workout) => workout.days.includes("Wednesday") && 
+      workout.shownOnWeekly);
+      case 'Thursday': return workouts.filter((workout) => workout.days.includes("Thursday") && workout.shownOnWeekly);
+      case 'Friday': return workouts.filter((workout) => workout.days.includes("Friday") && workout.shownOnWeekly);
+      case 'Saturday': return workouts.filter((workout) => workout.days.includes("Saturday") && workout.shownOnWeekly);
     }
   }
 
@@ -77,13 +78,13 @@ function WeeklyView({ today, checkedDates }) {
     <div className="WeeklyView">
       <h1 className="WeeklyTitle">Week of { weekOfString }</h1>
       <div className="WeeklyDays">
-        <WeeklyDay day="Sunday" date={sundayDate} workoutCompleted={suChecked} workout={getWorkout('Sunday')}/>
-        <WeeklyDay day="Monday" date={mondayDate} workoutCompleted={moChecked} workout={getWorkout('Monday')}/>
-        <WeeklyDay day="Tuesday" date={tuesdayDate} workoutCompleted={tuChecked} workout={getWorkout('Tuesday')}/>
-        <WeeklyDay day="Wednesday" date={wednesdayDate} workoutCompleted={weChecked} workout={getWorkout('Wednesday')}/>
-        <WeeklyDay day="Thursday" date={thursdayDate} workoutCompleted={thChecked} workout={getWorkout('Thursday')}/>
-        <WeeklyDay day="Friday" date={fridayDate} workoutCompleted={frChecked} workout={getWorkout('Friday')}/>
-        <WeeklyDay day="Saturday" date={saturdayDate} workoutCompleted={saChecked} workout={getWorkout('Saturday')}/>
+        <WeeklyDay day="Sunday" date={sundayDate} workoutCompleted={suChecked} workouts={getWorkouts('Sunday')}/>
+        <WeeklyDay day="Monday" date={mondayDate} workoutCompleted={moChecked} workouts={getWorkouts('Monday')}/>
+        <WeeklyDay day="Tuesday" date={tuesdayDate} workoutCompleted={tuChecked} workouts={getWorkouts('Tuesday')}/>
+        <WeeklyDay day="Wednesday" date={wednesdayDate} workoutCompleted={weChecked} workouts={getWorkouts('Wednesday')}/>
+        <WeeklyDay day="Thursday" date={thursdayDate} workoutCompleted={thChecked} workouts={getWorkouts('Thursday')}/>
+        <WeeklyDay day="Friday" date={fridayDate} workoutCompleted={frChecked} workouts={getWorkouts('Friday')}/>
+        <WeeklyDay day="Saturday" date={saturdayDate} workoutCompleted={saChecked} workouts={getWorkouts('Saturday')}/>
       </div>
     </div>
   );

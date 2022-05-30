@@ -19,6 +19,7 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
   const [thursdayChecked, setThursdayChecked] = useState(false);
   const [fridayChecked, setFridayChecked] = useState(false);
   const [saturdayChecked, setSaturdayChecked] = useState(false);
+  const [shownOnWeeklyView, setShownOnWeeklyView] = useState(false);
 
   //Each exercise will be an object with an id, and eventually a name when the user types one
   const [exercises, setExercises] = useState([{id: 1}]); 
@@ -34,6 +35,7 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
     setThursdayChecked(false);
     setFridayChecked(false);
     setSaturdayChecked(false);
+    setShownOnWeeklyView(false);
   }
 
   const addExerciseSlot = () => { 
@@ -68,8 +70,8 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
   }
 
   //Handle a day checkbox being checked or unchecked
-  const handleCheck = (day) => {
-    switch(day) {
+  const handleCheck = (check) => {
+    switch(check) {
       case 'Sunday': setSundayChecked(!sundayChecked); break;
       case 'Monday': setMondayChecked(!mondayChecked); break;
       case 'Tuesday': setTuesdayChecked(!tuesdayChecked); break;
@@ -77,6 +79,7 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
       case 'Thursday': setThursdayChecked(!thursdayChecked); break;
       case 'Friday': setFridayChecked(!fridayChecked); break;
       case 'Saturday': setSaturdayChecked(!saturdayChecked); break;
+      case 'WeeklyView': setShownOnWeeklyView(!shownOnWeeklyView); break;
     }
   }
 
@@ -114,6 +117,7 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
         name: newWorkoutName,
         exercises: fullExercises,
         days: days,
+        shownOnWeekly: shownOnWeeklyView,
       }
       axios.post('/addWorkout', info)
       .then(res => {
@@ -170,6 +174,12 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
             <label>
               <input type="checkbox" checked={saturdayChecked} onChange={() => handleCheck('Saturday')}/>
               Saturday
+            </label>
+          </div>
+          <div className="weeklyViewSelection">
+            <label>
+              <input type="checkbox" checked={shownOnWeeklyView} onChange={() => handleCheck('WeeklyView')}/>
+              Show on Weekly View
             </label>
           </div>
         </div>
