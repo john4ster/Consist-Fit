@@ -11,9 +11,11 @@ const key = require('weak-key');
 function Workouts() {
 
   const { userID } = useContext(AuthContext);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [newModalOpen, setNewModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
   const [workouts, setWorkouts] = useState([]);
-  const closeModalCallback = () => setModalOpen(false);
+  const closeModalCallback = () => setNewModalOpen(false);
+  const closeEditModalCallback = () => setEditModalOpen(false);
 
   useEffect(() => {
     axios.get('/userData/workouts', { params: {userID} })
@@ -33,15 +35,15 @@ function Workouts() {
       <h1 className="Title">My Workouts</h1>
 
       <div className="workoutCards">
-        {workouts.map((workout) => {
+        {workouts?.map((workout) => {
           return (
-            <WorkoutCard workout={workout} />
+            <WorkoutCard key={key({})} workout={workout} />
           )
         })}
       </div>
 
-      <button className="addWorkoutButton" onClick={() => setModalOpen(true)}>Add Workout</button>
-      <NewWorkoutModal modalOpen={modalOpen} mode={'new'} closeModalCallback={closeModalCallback} />
+      <button className="addWorkoutButton" onClick={() => setNewModalOpen(true)}>Add Workout</button>
+      <NewWorkoutModal modalOpen={newModalOpen} mode={'new'} closeModalCallback={closeModalCallback} />
     </div>
   );
 }

@@ -1,14 +1,14 @@
 import './weeklyday.css';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 
-function WeeklyDay({ day, date, workoutCompleted }) {
+function WeeklyDay({ day, date, workoutCompleted, workout }) {
 
   const { userID } = useContext(AuthContext);
-  const dateString = date.toDateString().slice(3, -4);
+  const dateString = date.toDateString().slice(3, -7) + date.getDate();
   const today = new Date();
 
   //See if this date is today
@@ -41,6 +41,7 @@ function WeeklyDay({ day, date, workoutCompleted }) {
       <div className="dayDate">
         <h2 className="day">{day}</h2>
         <p className="date">{dateString}</p>
+        <p className="workout">{workout?.name}</p>
       </div>
       <div className="status">
         {workoutCompleted 
