@@ -1,19 +1,16 @@
 import './workoutCard.css';
-import { useContext, useState } from 'react';
-import { AuthContext } from '../../context/AuthContext';
-import axios from 'axios';
+import { useState } from 'react';
 import EditWorkoutModal from '../editWorkoutModal/editWorkoutModal';
 
 const key = require('weak-key');
 
 function WorkoutCard({ workout }) {
 
-  const { userID } = useContext(AuthContext);
   const [modalOpen, setModalOpen] = useState(false);
   const closeModalCallback = () => setModalOpen(false);
 
   return (
-    <div className="WorkoutCard" onClick={() => setModalOpen(true)}>
+    <div className="WorkoutCard" onClick={() => setModalOpen(true) }>
       <div className="header">
         <h2>{workout.name}</h2>
         <h3>Days</h3>

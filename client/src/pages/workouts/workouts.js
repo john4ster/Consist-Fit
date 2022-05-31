@@ -12,10 +12,8 @@ function Workouts() {
 
   const { userID } = useContext(AuthContext);
   const [newModalOpen, setNewModalOpen] = useState(false);
-  const [editModalOpen, setEditModalOpen] = useState(false);
   const [workouts, setWorkouts] = useState([]);
   const closeModalCallback = () => setNewModalOpen(false);
-  const closeEditModalCallback = () => setEditModalOpen(false);
 
   useEffect(() => {
     axios.get('/userData/workouts', { params: {userID} })
@@ -25,7 +23,7 @@ function Workouts() {
     .catch(err => {
       console.log(err);
     });
-  }, [userID]);
+  }, [userID, workouts]);
 
   return (
     <div className="Workouts">
@@ -37,13 +35,13 @@ function Workouts() {
       <div className="workoutCards">
         {workouts?.map((workout) => {
           return (
-            <WorkoutCard key={key({})} workout={workout} />
+            <WorkoutCard key={workout} workout={workout} />
           )
         })}
       </div>
 
       <button className="addWorkoutButton" onClick={() => setNewModalOpen(true)}>Add Workout</button>
-      <NewWorkoutModal modalOpen={newModalOpen} mode={'new'} closeModalCallback={closeModalCallback} />
+      <NewWorkoutModal modalOpen={newModalOpen} closeModalCallback={closeModalCallback} />
     </div>
   );
 }

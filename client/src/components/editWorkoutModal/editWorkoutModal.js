@@ -7,13 +7,11 @@ import { getCheckedDays, prepareExercisesForUpload, addExerciseSlot, removeExerc
 
 Modal.setAppElement('#root');
 
-const key = require('weak-key');
-
 function EditWorkoutModal({ modalOpen, workout, closeModalCallback }) {
 
   const { userID } = useContext(AuthContext);
   const [newWorkoutName, setNewWorkoutName] = useState(workout.name);
-  const [oldWorkoutName, setOldWorkoutName] = useState(workout.name);
+  const oldWorkoutName = workout.name;
   const [sundayChecked, setSundayChecked] = useState(workout.days.includes("Sunday"));
   const [mondayChecked, setMondayChecked] = useState(workout.days.includes("Monday"));
   const [tuesdayChecked, setTuesdayChecked] = useState(workout.days.includes("Tuesday"));
