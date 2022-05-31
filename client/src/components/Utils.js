@@ -49,14 +49,3 @@ export const getCheckedDays = (checkedArr) => {
   if (checkedArr[6]) { days.push('Saturday'); }
   return days;
 }
-
-//Prepare exercises array for upload
-export const prepareExercisesForUpload = (exercises) => {
-  let arr = [];
-  for (let i = 0; i < exercises.length; i++) {
-    if (exercises[i].name !== undefined) {
-      arr.push(exercises[i]);
-    }
-  }
-  return arr;
-}

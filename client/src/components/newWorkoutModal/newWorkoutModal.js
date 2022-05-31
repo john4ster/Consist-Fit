@@ -56,7 +56,7 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
   //Send workout data to backend for saving
   const saveNewWorkout = () => {
     try {
-      let fullExercises = prepareExercisesForUpload(exercises);
+      let fullExercises = exercises.filter((exercise) => exercise.name !== undefined);
       let checkedArr = [sundayChecked, mondayChecked, tuesdayChecked, wednesdayChecked, thursdayChecked,
         fridayChecked, saturdayChecked];
       let days = getCheckedDays(checkedArr);
