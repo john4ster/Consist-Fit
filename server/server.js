@@ -27,11 +27,11 @@ app.post('/auth/register', async (req, res) => {
     //Save the user
     const user = await newUser.save();
     console.log("New user registered");
-    res.status(200).json(user);
+    return res.status(200).json(user);
   }
   catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
@@ -50,17 +50,17 @@ app.post('/auth/login', async (req, res) => {
         .then(validPassword => {
           //If the passwords don't match, do not log the user in 
           if (!validPassword) { 
-            res.status(500).send("Wrong Password"); 
+            return res.status(500).send("Wrong Password"); 
           }
           //If the user passed all previous checks, send back the user id for authentication
-          res.status(200).json(result._id);
+          return res.status(200).json(result._id);
         });
       }
     });
   }
   catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
@@ -73,7 +73,7 @@ app.post('/checkDate', (req, res) => {
     if (checked) {
       UserModel.updateOne({"_id": userID}, {$pull: {"checkedDates": date}})
       .then(() => {
-        res.status(200).send("Date Unchecked");
+        return res.status(200).send("Date Unchecked");
       })
       .catch(err => {
         console.log(err);
@@ -82,7 +82,7 @@ app.post('/checkDate', (req, res) => {
     else {
       UserModel.updateOne({"_id": userID}, {$push: {"checkedDates": date}})
       .then(() => {
-        res.status(200).send("Date Checked Added");
+        return res.status(200).send("Date Checked Added");
       })
       .catch(err => {
         console.log(err);
@@ -91,13 +91,13 @@ app.post('/checkDate', (req, res) => {
   }
   catch(err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
 //Route to post a new workout for the user
 //Need to limit weekly views eventually to 1 or 2
-app.post('/addWorkout', (req, res) => {
+app.post('/addWorkout', async (req, res) => {
   try {
     const userID = req.body.userID;
     const workoutName = req.body.name;
@@ -110,22 +110,33 @@ app.post('/addWorkout', (req, res) => {
       days: days,
       shownOnWeekly: shownOnWeekly,
     }
+
+    //Check for duplicate names
+    const duplicateNames = await UserModel.find({
+      "_id": userID, 
+      "workouts": { $elemMatch: { "name": workoutName } }
+    });
+    if (duplicateNames.length > 0) {
+      return res.status(400).send("Error: Duplicate Workout Names Not Allowed");
+    }
+
+    //If the above checks were passed, we can add the new workout
     UserModel.updateOne({"_id": userID}, {$push: { "workouts": workout }})
     .then(() => {
-      res.status(200).send("New Workout Added");
+      return res.status(200).send("New Workout Added");
     })
     .catch(err => {
       console.log(err);
-    })
+    });
   }
   catch(err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
 //Route to edit a workout for the user
-app.post('/editWorkout', (req, res) => {
+app.post('/editWorkout', async (req, res) => {
   try {
     const userID = req.body.userID;
     const oldWorkoutName = req.body.oldName;
@@ -133,6 +144,18 @@ app.post('/editWorkout', (req, res) => {
     const exercises = req.body.exercises;
     const days = req.body.days
     const shownOnWeekly = req.body.shownOnWeekly;
+
+    //Check for duplicate names
+    if (newWorkoutName !== oldWorkoutName) {
+      const duplicateNames = await UserModel.find({
+        "_id": userID, 
+        "workouts": { $elemMatch: { "name": newWorkoutName } }
+      });
+      if (duplicateNames.length > 0) {
+        return res.status(400).send("Error: Duplicate Workout Names Not Allowed");
+      }
+    }
+
     UserModel.findOneAndUpdate(
       {
         "_id": userID, 
@@ -148,7 +171,7 @@ app.post('/editWorkout', (req, res) => {
       },
     )
     .then(() => {
-      res.status(200).send('Workout Updated');
+      return res.status(200).send('Workout Updated');
     })
     .catch(err => {
       console.log(err);
@@ -156,7 +179,7 @@ app.post('/editWorkout', (req, res) => {
   }
   catch(err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 })
 
@@ -168,7 +191,7 @@ app.post('/deleteWorkout', (req, res) => {
     const workoutName = workout.name;
     UserModel.updateOne({"_id": userID}, { $pull: { "workouts": { "name": workoutName } }})
     .then(() => {
-      res.status(200).send('Workout Deleted');
+      return res.status(200).send('Workout Deleted');
     })
     .catch(err => {
       console.log(err);
@@ -176,7 +199,7 @@ app.post('/deleteWorkout', (req, res) => {
   }
   catch(err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
@@ -186,7 +209,7 @@ app.get('/userData/checkedDates', (req, res) => {
     const userID = req.query.userID;
     UserModel.findById(userID)
     .then(result => {
-      res.status(200).send(result.checkedDates);
+      return res.status(200).send(result.checkedDates);
     })
     .catch(err => {
       console.log(err);
@@ -194,7 +217,7 @@ app.get('/userData/checkedDates', (req, res) => {
   }
   catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 
@@ -203,10 +226,10 @@ app.get('/userData/workouts', (req, res) => {
   const userID = req.query.userID;
   UserModel.findById(userID)
   .then(result => {
-    res.status(200).send(result.workouts);
+    return res.status(200).send(result.workouts);
   })
   .catch(err => {
-      console.log(err);
+    console.log(err);
   });
 });
 

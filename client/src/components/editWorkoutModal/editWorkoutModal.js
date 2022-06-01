@@ -55,6 +55,9 @@ function EditWorkoutModal({ modalOpen, workout, closeModalCallback }) {
         console.log(res);
       })
       .catch(err => {
+        if (err.response.status === 400) {
+          window.alert(err.response.data);
+        }
         console.log(err);
       })
     }
@@ -63,7 +66,7 @@ function EditWorkoutModal({ modalOpen, workout, closeModalCallback }) {
     }
   }
 
-  const deleteWorkout = () => {
+  const deleteWorkout = (e) => {
     if(window.confirm('Are you sure you want to delete this workout?')) {
       try {
         let info = {
@@ -73,6 +76,8 @@ function EditWorkoutModal({ modalOpen, workout, closeModalCallback }) {
         axios.post('/deleteWorkout', info)
         .then(res => {
           console.log(res);
+          e.stopPropagation();
+          closeModalCallback();
         })
         .catch(err => {
           console.log(err);
@@ -96,7 +101,7 @@ function EditWorkoutModal({ modalOpen, workout, closeModalCallback }) {
           required 
           className="workoutNameInput"
           onChange={e => setNewWorkoutName(e.target.value)}/>
-          <button className="deleteButton" onClick={deleteWorkout}>Delete Workout</button>
+          <button className="deleteButton" onClick={(e) => deleteWorkout(e)}>Delete Workout</button>
         <div className="daySelection">
           <h1>Select Days</h1>
           <label>
