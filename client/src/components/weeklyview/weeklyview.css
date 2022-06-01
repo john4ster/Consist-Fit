@@ -5,3 +5,10 @@
 .WeeklyDays {
   display: flex;
 }
+
+@media all and (max-width: 1800px) {
+  .WeeklyDays {
+    display: flex;
+    flex-direction: column;
+  }
+}

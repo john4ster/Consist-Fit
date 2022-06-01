@@ -16,3 +16,12 @@
   flex-wrap: wrap;
   margin-left: 110px;
 }
+
+@media all and (max-width: 300px) {
+  .addWorkoutButton {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    cursor: pointer;
+  }
+}
