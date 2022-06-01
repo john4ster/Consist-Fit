@@ -69,7 +69,6 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
       }
       axios.post('/addWorkout', info)
       .then(res => {
-        window.alert(res.response.data);
         resetModal();
         closeModalCallback();
         console.log(res.response);

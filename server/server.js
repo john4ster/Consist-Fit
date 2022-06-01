@@ -120,6 +120,31 @@ app.post('/addWorkout', async (req, res) => {
       return res.status(400).send("Error: Duplicate Workout Names Not Allowed");
     }
 
+    //Check to make sure user only has one workout shown per day on weekly view
+    //Example: If there is already a workout shown for Monday, we don't want this workout showing there too
+    if (shownOnWeekly) {
+      const weeklyWorkoutResults = await UserModel.find({
+        "_id": userID,
+        "shownOnWeekly": true,
+      });
+      let overlap = false;
+      //Go through results, and get each workout day. If req.days contains a workout day already, there is
+      //overlap and we need to return an error
+      weeklyWorkoutResults.map((result) => {
+        result.workouts.map((workout) => {
+          workout.days.map((day) => {
+            if (days.includes(day)) {
+              overlap = true;
+            }
+          });
+        });
+      });
+      //If there was overlap, return the error
+      if (overlap) {
+        return res.status(400).send("Error: Days for this workout overlap with another workout that is already Shown on the Weekly View.")
+      }
+    }
+
     //If the above checks were passed, we can add the new workout
     UserModel.updateOne({"_id": userID}, {$push: { "workouts": workout }})
     .then(() => {
@@ -156,6 +181,35 @@ app.post('/editWorkout', async (req, res) => {
       }
     }
 
+    //Check to make sure user only has one workout shown per day on weekly view
+    //Example: If there is already a workout shown for Monday, we don't want this workout showing there too if Monday
+    // and shownOnWeekly are both checked
+    if (shownOnWeekly) {
+      const weeklyWorkoutResults = await UserModel.find({
+        "_id": userID,
+        "shownOnWeekly": true,
+      });
+      let overlap = false;
+      //Go through results, and get each workout day. If req.days contains a workout day already, there is
+      //overlap and we need to return an error
+      weeklyWorkoutResults.map((result) => {
+        result.workouts.map((workout) => {
+          if (workout.name !== oldWorkoutName) { //Avoid current workout being flagged as a separate workout
+            workout.days.map((day) => { 
+              if (days.includes(day)) {
+                overlap = true;
+              }
+            });
+          }
+        });
+      });
+      //If there was overlap, return the error
+      if (overlap) {
+        return res.status(400).send("Error: Days for this workout overlap with another workout that is already Shown on the Weekly View.")
+      }
+    }
+
+    //If the above checks were passed, update the workout
     UserModel.findOneAndUpdate(
       {
         "_id": userID, 
