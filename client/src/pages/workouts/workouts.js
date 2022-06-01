@@ -35,7 +35,7 @@ function Workouts() {
       <div className="workoutCards">
         {workouts?.map((workout) => {
           return (
-            <WorkoutCard key={workout} workout={workout} />
+            <WorkoutCard key={workout.name} workout={workout} />
           )
         })}
       </div>

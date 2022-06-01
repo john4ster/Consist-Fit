@@ -76,7 +76,7 @@ function CalendarView() {
       </div>
       <div className="days">
         {days.map(d => (
-          <CalendarDay date={d} checked={checkedDates.includes(d.setHours(0, 0, 0, 0))}/>
+          <CalendarDay key={d} date={d} checked={checkedDates.includes(d.setHours(0, 0, 0, 0))}/>
         ))}
       </div>
     </div>
