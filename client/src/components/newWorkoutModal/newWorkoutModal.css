@@ -80,10 +80,9 @@
 }
 
 .closeButton {
+  position: absolute;
   margin-top: 0;
-  padding: 0;
-  margin-right: 10px;
-  margin-left: 100px;
+  margin-right: 0;
   font-weight: bold;
   font-size: 60px;
   transform: rotate(45deg);
@@ -138,4 +137,59 @@
   height: 20px;
   width: 20px;
   cursor: pointer;
+}
+
+@media all and (max-width: 1800px) {
+  .leftHalf {
+    width: 40%;
+  }
+
+  .leftHalf input{
+    width: 60%;
+    font-size: 30px;
+  }
+  
+  .newWorkoutTitle {
+    font-size: 50px;
+  }
+  
+  .workoutNameInput {
+    width: 50px;
+  }
+
+  .daySelection {
+    width: 60%;
+  }
+
+  .middleHeader {
+    width: 40%;
+  }
+}
+
+@media all and (max-width: 1000px) {
+  .inputModal {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .leftHalf {
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+
+  .leftHalf input{
+    width: 90%;
+  }
+
+  .middle {
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 0;
+  }
+
+  .exercisesTitle {
+    margin-right: 30%;
+  }
 }
