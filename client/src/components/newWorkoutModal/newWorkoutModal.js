@@ -1,9 +1,9 @@
 import './newWorkoutModal.css';
 import Modal from 'react-modal';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
-import { getCheckedDays, prepareExercisesForUpload, addExerciseSlot, removeExerciseSlot, addExercise } from '../Utils';
+import { getCheckedDays, addExerciseSlot, removeExerciseSlot, addExercise } from '../Utils';
 
 Modal.setAppElement('#root');
 

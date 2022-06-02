@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
-import { getCheckedDays, prepareExercisesForUpload, addExerciseSlot, removeExerciseSlot, addExercise } from '../Utils';
+import { getCheckedDays, addExerciseSlot, removeExerciseSlot, addExercise } from '../Utils';
 
 Modal.setAppElement('#root');
 
@@ -168,7 +168,7 @@ function EditWorkoutModal({ modalOpen, workout, closeModalCallback }) {
           e.stopPropagation(); 
           closeModalCallback();
         }}>+</p>
-        <button className="saveButton" onClick={saveChanges}>Save Changes</button>
+        <button className="saveChanges" onClick={saveChanges}>Save Changes</button>
       </div>
     </Modal>
   )

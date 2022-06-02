@@ -19,3 +19,15 @@ body {
   margin-left: 310px;
 }
 
+@media all and (max-width: 1800px) {
+  .calendarHeader {
+    margin-left: 20%;
+  }
+}
+
+@media all and (max-width: 1000px) {
+  .calendarHeader {
+    margin-left: 25%;
+  }
+}
+

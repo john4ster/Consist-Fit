@@ -12,7 +12,6 @@
 .newWorkoutTitle {
   margin-top: 0;
   margin-bottom: 0;
-  padding: 0;
   font-size: 100px;
   text-decoration: underline;
 }
@@ -21,6 +20,7 @@
   font-size: 50px;
   width: 100%;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .leftHalf {
@@ -90,7 +90,7 @@
 }
 
 .saveButton {
-  margin-top: 835%;
+  margin-top: 850%;
   cursor: pointer;
 }
 
