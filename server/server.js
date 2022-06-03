@@ -297,7 +297,6 @@ app.get('/userData/workouts', (req, res) => {
   });
 });
 
-const port = 3001
-app.listen(port, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log(`Server listening on port ${port}`);
 });
