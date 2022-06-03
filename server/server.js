@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 mongoose.connect(process.env.DATABASE_LINK);
 
-app.post('/auth/register', async (req, res) => {
+app.post('/api/auth/register', async (req, res) => {
   try {
     //Salt and hash password
     const salt = await bcrypt.genSalt(10);
@@ -35,7 +35,7 @@ app.post('/auth/register', async (req, res) => {
   }
 });
 
-app.post('/auth/login', async (req, res) => {
+app.post('/api/auth/login', async (req, res) => {
   try {
     //See if the user exists
     await UserModel.findOne({"email": req.body.email})
@@ -65,7 +65,7 @@ app.post('/auth/login', async (req, res) => {
 });
 
 //Route to handle a workout being checked or unchecked
-app.post('/checkDate', (req, res) => {
+app.post('/api/checkDate', (req, res) => {
   try {
     const userID = req.body.userID;
     const date = req.body.date;
@@ -97,7 +97,7 @@ app.post('/checkDate', (req, res) => {
 
 //Route to post a new workout for the user
 //Need to limit weekly views eventually to 1 or 2
-app.post('/addWorkout', async (req, res) => {
+app.post('/api/addWorkout', async (req, res) => {
   try {
     const userID = req.body.userID;
     const workoutName = req.body.name;
@@ -166,7 +166,7 @@ app.post('/addWorkout', async (req, res) => {
 });
 
 //Route to edit a workout for the user
-app.post('/editWorkout', async (req, res) => {
+app.post('/api/editWorkout', async (req, res) => {
   try {
     const userID = req.body.userID;
     const oldWorkoutName = req.body.oldName;
@@ -248,7 +248,7 @@ app.post('/editWorkout', async (req, res) => {
 })
 
 //Route to delete a workout for the user
-app.post('/deleteWorkout', (req, res) => {
+app.post('/api/deleteWorkout', (req, res) => {
   try {
     const userID = req.body.userID;
     const workout = req.body.workout;
@@ -268,7 +268,7 @@ app.post('/deleteWorkout', (req, res) => {
 });
 
 //Route to get dates the user has checked off this week
-app.get('/userData/checkedDates', (req, res) => {
+app.get('/api/userData/checkedDates', (req, res) => {
   try {
     const userID = req.query.userID;
     UserModel.findById(userID)
@@ -286,7 +286,7 @@ app.get('/userData/checkedDates', (req, res) => {
 });
 
 //Route to get the user's saved workouts
-app.get('/userData/workouts', (req, res) => {
+app.get('/api/userData/workouts', (req, res) => {
   const userID = req.query.userID;
   UserModel.findById(userID)
   .then(result => {
@@ -298,5 +298,5 @@ app.get('/userData/workouts', (req, res) => {
 });
 
 app.listen(process.env.PORT || 3001, () => {
-  console.log(`Server listening on port ${port}`);
+  console.log(`Server listening`);
 });

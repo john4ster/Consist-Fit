@@ -16,7 +16,7 @@ function CalendarDay({ date, checked }) {
       date: date.setHours(0, 0, 0, 0),
       checked: checked,
     }
-    axios.post('/checkDate', info)
+    axios.post('/api/checkDate', info)
     .then(res => {
       console.log(res);
     })

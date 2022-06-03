@@ -49,7 +49,7 @@ function EditWorkoutModal({ modalOpen, workout, closeModalCallback }) {
         days: days,
         shownOnWeekly: shownOnWeeklyView,
       }
-      axios.post('/editWorkout', info)
+      axios.post('/api/editWorkout', info)
       .then(res => {
         closeModalCallback();
         console.log(res);
@@ -73,7 +73,7 @@ function EditWorkoutModal({ modalOpen, workout, closeModalCallback }) {
           userID: userID,
           workout: workout,
         }
-        axios.post('/deleteWorkout', info)
+        axios.post('/api/deleteWorkout', info)
         .then(res => {
           console.log(res);
           e.stopPropagation();

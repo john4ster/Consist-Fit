@@ -16,7 +16,7 @@ function Workouts() {
   const closeModalCallback = () => setNewModalOpen(false);
 
   useEffect(() => {
-    axios.get('/userData/workouts', { params: {userID} })
+    axios.get('/api/userData/workouts', { params: {userID} })
     .then(res => {
       setWorkouts(res.data);
     })

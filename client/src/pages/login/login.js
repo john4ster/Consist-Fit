@@ -20,7 +20,7 @@ function Login() {
         password: password,
       }
       //Make login request to the server, and use the userID it sends back to authenticate the user
-      axios.post('/auth/login', credentials)
+      axios.post('/api/auth/login', credentials)
       .then(res => {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       })

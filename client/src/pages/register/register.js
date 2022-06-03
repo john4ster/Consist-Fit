@@ -22,7 +22,7 @@ function Register() {
         password: password,
       }
       try {
-        axios.post('/auth/register', newUser)
+        axios.post('/api/auth/register', newUser)
         .then(response => { 
           console.log(response) 
         })
