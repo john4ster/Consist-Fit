@@ -111,6 +111,11 @@ app.post('/addWorkout', async (req, res) => {
       shownOnWeekly: shownOnWeekly,
     }
 
+    //Make sure the name is not too long
+    if (workoutName.length > 9) {
+      return res.status(400).send("Error: Workout Name must be less than 10 characters")
+    }
+
     //Check for duplicate names
     const duplicateNames = await UserModel.find({
       "_id": userID, 
@@ -169,6 +174,11 @@ app.post('/editWorkout', async (req, res) => {
     const exercises = req.body.exercises;
     const days = req.body.days
     const shownOnWeekly = req.body.shownOnWeekly;
+
+    //Make sure workout name is not too long
+    if (newWorkoutName.length > 9) {
+      return res.status(400).send("Error: Workout Name must be less than 10 characters")
+    }
 
     //Check for duplicate names
     if (newWorkoutName !== oldWorkoutName) {
