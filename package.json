@@ -34,7 +34,7 @@
   },
   "scripts": {
     "start": "concurrently \"npm start --prefix server\" \"npm start --prefix client\"",
-    "build": "cd client/ && npm install && npm build"
+    "build": "cd client/ && npm install && npm run build"
   },
   "repository": {
     "type": "git",
