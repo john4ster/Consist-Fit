@@ -17,6 +17,10 @@ body {
   flex-direction: column;
 }
 
+.loginButton button {
+  cursor: pointer;
+}
+
 input {
   padding: 8px;
   margin: 10px;
