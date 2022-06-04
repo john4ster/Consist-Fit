@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const UserModel = require('./models/users');
+const path = require('path'); 
 require('dotenv').config();
 
 //Set up body parser
