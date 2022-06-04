@@ -20,5 +20,14 @@ Consist Fit is a web app focused on one thing: helping users stay consistent wit
 * Consist Fit uses the React Context API to keep track of which user is logged in
 * It also uses the browser's local storage to store the user, so the user stays logged in if they revisit the page
 
+# Usage
+Consist-Fit is available to use at the following URL: https://consist-fit-heroku.herokuapp.com/
+
+If you'd like to try the app without making an account, you can use a sample account with the following credentials:
+
+`username: john@gmail.com`
+
+`password: consistfit123!`
+
 # Technologies
 Consist Fit is built using the MERN stack (MongoDB, ExpressJS, ReactJS, NodeJS).
