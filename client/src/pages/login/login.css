@@ -17,7 +17,7 @@ body {
   flex-direction: column;
 }
 
-.loginButton button {
+.loginButton {
   cursor: pointer;
 }
 
