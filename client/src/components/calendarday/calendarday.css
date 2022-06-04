@@ -1,7 +1,8 @@
 .CalendarDay {
-  padding: 12px;
+  padding: 5px;
   border-style: solid;
-  width: 230px;
+  width: 200px;
+  max-height: 150px;
   background-color: white;
 }
 
@@ -17,11 +18,15 @@
 }
 
 .filledCheckBubble {
-  margin-top: 80px;
+  margin-top: 62px;
+  margin-bottom: 10px;
+  margin-left: 5px;
   color: #0e8610;
   color: #23db26;
 }
 
 .emptyCheckBubble {
+  margin-top: 62px;
   margin-bottom: 10px;
+  margin-left: 5px;
 }

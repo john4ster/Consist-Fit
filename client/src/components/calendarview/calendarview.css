@@ -16,7 +16,7 @@ body {
 .days {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 310px;
+  margin-left: 220px;
 }
 
 @media all and (max-width: 1800px) {

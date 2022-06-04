@@ -14,5 +14,5 @@
 .workoutCards {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 110px;
+  margin-left: 80px;
 }

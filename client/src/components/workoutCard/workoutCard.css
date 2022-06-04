@@ -1,12 +1,12 @@
 .WorkoutCard {
   display: flex;
-  margin-left: 50px;
+  margin-left: 40px;
   margin-bottom: 50px;
   background-color: #DA7825;
   padding: 20px;
   border-radius: 10px;
   width: 15%;
-  height: 380px;
+  height: 350px;
   cursor: pointer;
 }
 
