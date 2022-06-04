@@ -33,7 +33,7 @@
     "yargs-parser": "^21.0.1"
   },
   "scripts": {
-    "start": "concurrently \"npm start --prefix server\" \"npm start --prefix client\"",
+    "start": "node ./server/server.js",
     "build": "cd client/ && npm install && npm run build && cd .. && cd server/ && npm install"
   },
   "repository": {

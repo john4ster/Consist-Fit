@@ -12,6 +12,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 mongoose.connect(process.env.DATABASE_LINK);
 
+app.use('/', express.static(path.join(__dirname, '../client/build')));
+
 app.post('/api/auth/register', async (req, res) => {
   try {
     //Salt and hash password
