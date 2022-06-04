@@ -34,7 +34,8 @@
   },
   "scripts": {
     "start": "node ./server/server.js",
-    "build": "cd client/ && npm install && npm run build && cd .. && cd server/ && npm install"
+    "build": "cd client/ && npm install && npm run build && cd .. && cd server/ && npm install",
+    "dev": "concurrently \"npm start --prefix server\" \"npm start --prefix client\""
   },
   "repository": {
     "type": "git",

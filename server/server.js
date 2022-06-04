@@ -17,13 +17,22 @@ app.use('/', express.static(path.join(__dirname, '../client/build')));
 
 app.post('/api/auth/register', async (req, res) => {
   try {
+    const email = req.body.email;
     //Salt and hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
+    //Make sure the email is not already in use
+    const accountsUsingEmail = await UserModel.find({
+      "email": email,
+    });
+
+    if (accountsUsingEmail.length > 0) {
+      return res.status(400).send("Error: Email already in use");
+    }
     //Create new user
     const newUser = new UserModel({
-      "email": req.body.email,
+      "email": email,
       "password": hashedPassword,
     });
 
@@ -53,7 +62,7 @@ app.post('/api/auth/login', async (req, res) => {
         .then(validPassword => {
           //If the passwords don't match, do not log the user in 
           if (!validPassword) { 
-            return res.status(500).send("Wrong Password"); 
+            return res.status(400).send("Wrong Password"); 
           }
           //If the user passed all previous checks, send back the user id for authentication
           return res.status(200).json(result._id);

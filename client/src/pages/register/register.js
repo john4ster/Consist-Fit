@@ -24,12 +24,15 @@ function Register() {
       try {
         axios.post('/api/auth/register', newUser)
         .then(response => { 
-          console.log(response) 
+          console.log(response);
+          navigate('/'); //Send user to home/login page
         })
         .catch(err => { 
+          if (err.response.status === 400) {
+            window.alert(err.response.data);
+          }
           console.log(err.response) 
         });
-        navigate('/'); //Send user to home/login page
       }
       catch(err) {
         console.log(err);

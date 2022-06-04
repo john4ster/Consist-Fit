@@ -25,7 +25,9 @@ function Login() {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       })
       .catch(err => { 
-        console.log(err) 
+        if (err.response.status === 400 || err.response.status === 404) {
+          window.alert(err.response.data);
+        }
         dispatch({ type: "LOGIN_FAILURE", payload: err });
       });
     }
