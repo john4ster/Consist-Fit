@@ -42,31 +42,37 @@ function Register() {
 
   return (
     <div className="register">
-      <h1>Register</h1>
-      { !passwordsMatch ? <p className="passwordWarning">Passwords do not match</p> : <p></p>}
-      <form className="registerForm" onSubmit={handleClick}>
-        <input 
-        placeholder="Email" 
-        type="email" 
-        required 
-        className="registerInput" 
-        onChange={e => setEmail(e.target.value)}/>
-        <input 
-        placeholder="Password" 
-        type="password" 
-        required 
-        className="registerInput"
-        onChange={e => setPassword(e.target.value)}/>
-        <input 
-        placeholder="Confirm Password" 
-        type="password" 
-        required 
-        className="registerInput"
-        onChange={e => setConfirmedPassword(e.target.value)}/>
-        <button className="registerButton">Register</button>
-      </form>
-      <p className="loginText">Already have an account?</p>
-      <Link to="/">Login Here</Link>
+      <div className="title">
+        <h1>Consist-Fit</h1>
+        <h2>Helping You Maintain a Consistent Workout Schedule</h2>
+      </div>
+      <div className="registerPanel">
+        <h1>Register</h1>
+        { !passwordsMatch ? <p className="passwordWarning">Passwords do not match</p> : <p></p>}
+        <form className="registerForm" onSubmit={handleClick}>
+          <input 
+          placeholder="Email" 
+          type="email" 
+          required 
+          className="registerInput" 
+          onChange={e => setEmail(e.target.value)}/>
+          <input 
+          placeholder="Password" 
+          type="password" 
+          required 
+          className="registerInput"
+          onChange={e => setPassword(e.target.value)}/>
+          <input 
+          placeholder="Confirm Password" 
+          type="password" 
+          required 
+          className="registerInput"
+          onChange={e => setConfirmedPassword(e.target.value)}/>
+          <button className="registerButton">Register</button>
+        </form>
+        <p className="loginText">Already have an account?</p>
+        <Link to="/">Login Here</Link>
+      </div>
     </div>
   );
 }

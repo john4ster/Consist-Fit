@@ -3,13 +3,36 @@ body {
 }
 
 .register {
-  background: #fc9803;
-  width: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   margin: 150px auto;
+}
+
+.title {
+  margin-right: 5%;
+  margin-top: 5%;
+  user-select: none;
+}
+
+.title h1{
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 80px;
+  text-decoration: underline;
+}
+
+.title h2 {
+  font-size: 15px;
+  margin-top: 0;
+}
+
+.registerPanel {
+  background: #fc9803;
   padding: 10px;
-  height: 500px;
-  max-width: 350px;
+  width: 400px;
   border-radius: 6px;
+  height: 400px;
 }
 
 .registerForm {

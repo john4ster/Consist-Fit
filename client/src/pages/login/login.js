@@ -38,24 +38,30 @@ function Login() {
 
   return (
     <div className="login">
-      <h1>Login</h1>
-      <form className="loginForm" onSubmit={handleLogin}>
-        <input 
-        placeholder="Email" 
-        type="email" 
-        required 
-        className="loginInput" 
-        onChange={e => setEmail(e.target.value)}/>
-        <input 
-        placeholder="Password" 
-        type="password" 
-        required 
-        className="loginInput"
-        onChange={e => setPassword(e.target.value)}/>
-        <button className="loginButton">Login</button>
-      </form>
-      <p className="registerText">Don't have an account?</p>
-      <Link to="/register">Sign Up Here</Link>
+      <div className="title">
+        <h1>Consist-Fit</h1>
+        <h2>Helping You Maintain a Consistent Workout Schedule</h2>
+      </div>
+      <div className="loginPanel">
+        <h1>Login</h1>
+        <form className="loginForm" onSubmit={handleLogin}>
+          <input 
+          placeholder="Email" 
+          type="email" 
+          required 
+          className="loginInput" 
+          onChange={e => setEmail(e.target.value)}/>
+          <input 
+          placeholder="Password" 
+          type="password" 
+          required 
+          className="loginInput"
+          onChange={e => setPassword(e.target.value)}/>
+          <button className="loginButton">Login</button>
+        </form>
+        <p className="registerText">Don't have an account?</p>
+        <Link to="/register">Sign Up Here</Link>
+      </div>
     </div>
   );
 }
