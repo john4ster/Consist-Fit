@@ -37,7 +37,7 @@ function WeeklyDay({ day, date, workoutCompleted, workouts }) {
   }
 
   return (
-    <div className="WeeklyDay" style={isToday ? {background: "#b8b6b2" } : {background: "white" }}>
+    <div className="WeeklyDay" style={isToday ? {background: "#D8D8D8" } : {background: "white" }}>
       <div className="dayDate">
         <h2 className="day">{day}</h2>
         <p className="date">{dateString}</p>

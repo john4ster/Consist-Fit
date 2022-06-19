@@ -1,6 +1,5 @@
 body {
   overflow: hidden;
-  background-color: #479bbd;
 }
 
 .WeeklyView {
@@ -13,6 +12,7 @@ body {
 
 .homeArea {
   display: flex;
+  background-color: #F0E9DC;
 }
 
 .checkupBox {
@@ -22,7 +22,6 @@ body {
   display: flex;
   outline-style: solid;
   outline-width: thin;
-  background-color: #4475fc;
   border-radius: 10px;
   margin-top: 500px;
 }

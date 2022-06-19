@@ -1,6 +1,10 @@
+body {
+  background-color:#F0E9DC;
+}
+
 .WeeklyDay {
-  background-color: white;
-  height: 369px;
+  height: 330px;
+  box-shadow: 8px 5px 5px;
 }
 
 .dayDate {
@@ -9,6 +13,7 @@
   width: 200px;
   outline-color: black;
   outline-style: solid;
+  border-radius: 2px;
 }
 
 .day {
@@ -17,27 +22,25 @@
 
 .date {
   font-weight: normal;
-  font-size: 15px;
+  font-size: 13px;
   margin-top: 0px;
 }
 
 .filledCheckBubble {
   transform: scale(1.5);
-  margin-top: 80px;
   color: #23db26;
   cursor: pointer;
 }
 
 .emptyCheckBubble {
   transform: scale(1.5);
-  margin-top: 80px;
   cursor: pointer;
 }
 
 .status {
   padding: 10px;
   width: 200px;
-  height: 200px;
+  height: 161px;
   outline-color: black;
   outline-style: solid;
   margin-bottom: 10px;
@@ -46,17 +49,17 @@
 .workout {
   justify-content: center;
   background-color: #DA7825;
-  border-radius: 50px;
   margin-left: 20%;
   margin-right: 20%;
   padding: 5px;
+  font-size: 18px;
 }
 
 @media all and (max-width: 1800px) {
   .WeeklyDay {
     background-color: white;
     height: 365px;
-    width: 85%;
+    width: 78%;
     margin-bottom: 25px;
   }
 }
