@@ -14,26 +14,21 @@ function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
-    try {
-      const credentials = {
-        email: email,
-        password: password,
+    const credentials = {
+      email: email,
+      password: password,
+    }
+    //Make login request to the server, and use the userID it sends back to authenticate the user
+    axios.post('/api/auth/login', credentials)
+    .then(res => {
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+    })
+    .catch(err => { 
+      if (err.response.status === 400 || err.response.status === 404) {
+        window.alert(err.response.data);
       }
-      //Make login request to the server, and use the userID it sends back to authenticate the user
-      axios.post('/api/auth/login', credentials)
-      .then(res => {
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-      })
-      .catch(err => { 
-        if (err.response.status === 400 || err.response.status === 404) {
-          window.alert(err.response.data);
-        }
-        dispatch({ type: "LOGIN_FAILURE", payload: err });
-      });
-    }
-    catch(err) {
-      console.log(err);
-    }
+      dispatch({ type: "LOGIN_FAILURE", payload: err });
+    });
   }
 
   return (
