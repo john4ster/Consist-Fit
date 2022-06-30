@@ -5,6 +5,18 @@ body {
 .WeeklyDay {
   height: 330px;
   box-shadow: 8px 5px 5px;
+  background-color: white;
+}
+
+.TodayWeeklyDay {
+  height: 330px;
+  box-shadow: 8px 5px 5px;
+  background-color: white;
+  outline-color: #DA7825;
+  outline-style: solid;
+  outline-width: 6px;
+  border-radius: 2px;
+  z-index: 99;
 }
 
 .dayDate {
