@@ -13,7 +13,9 @@ function Sidebar({ homeSelected, workoutsSelected, calendarSelected }) {
 
   const handleLogout = (e) => {
     e.preventDefault();
-    dispatch({ type: "LOGOUT" });
+    if (window.confirm("Are you sure you want to log out?")) {
+      dispatch({ type: "LOGOUT" });
+    }
   } 
 
   return (

@@ -41,11 +41,9 @@ function WeeklyDay({ day, date, workoutCompleted, workouts }) {
       <div className="dayDate">
         <h2 className="day">{day}</h2>
         <p className="date">{dateString}</p>
-        {workouts?.map((workout) => {
-          return (
-            <p className="workout">{workout.name}</p>
-          )
-        })}
+        {workouts.length === 0 
+        ? <p className="blankWorkout">No Workout</p> 
+        : workouts.map((workout) => { return (<p className="workout">{workout.name}</p>)})}
       </div>
       <div className="status">
         {workoutCompleted 
