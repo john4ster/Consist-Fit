@@ -79,8 +79,20 @@ body {
 @media all and (max-width: 1800px) {
   .WeeklyDay {
     background-color: white;
-    height: 365px;
-    width: 78%;
+    height: 330px;
+    width: 80.5%;
+    margin-bottom: 25px;
+  }
+  .TodayWeeklyDay {
+    height: 330px;
+    width: 80.5%;
+    box-shadow: 8px 5px 5px;
+    background-color: white;
+    outline-color: #DA7825;
+    outline-style: solid;
+    outline-width: 6px;
+    border-radius: 2px;
+    z-index: 99;
     margin-bottom: 25px;
   }
 }
