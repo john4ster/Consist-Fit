@@ -1,3 +1,7 @@
 .Calendar {
   overflow: hidden;
 }
+
+.bottom {
+  height: 100px;
+}

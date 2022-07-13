@@ -11,6 +11,7 @@ function Calendar() {
       <div className="CalendarDisplay">
         <CalendarView />
       </div>
+      <div className="bottom"></div>
     </div>
   );
 }

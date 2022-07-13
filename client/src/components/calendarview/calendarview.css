@@ -1,5 +1,6 @@
 body {
   overflow: visible;
+  max-width: 100%;
 }
 
 .calendarHeader {
@@ -13,6 +14,24 @@ body {
   cursor: pointer;
 }
 
+.dayNames {
+  display: flex;
+  flex-direction: row;
+  margin-left: 8%;
+}
+
+.dayNames p {
+  font-size: 25px;
+  margin-left: 5.4%;
+  padding: 10px;
+  width: 105px;
+  font-weight: bold;
+}
+
+.paddingDay {
+  width: 216px;
+}
+
 .days {
   display: flex;
   flex-wrap: wrap;
@@ -23,11 +42,19 @@ body {
   .calendarHeader {
     margin-left: 20%;
   }
+  
+  .dayNames {
+    display: none;
+  }
 }
 
 @media all and (max-width: 1000px) {
   .calendarHeader {
     margin-left: 25%;
+  }
+
+  .dayNames {
+    display: none;
   }
 }
 
