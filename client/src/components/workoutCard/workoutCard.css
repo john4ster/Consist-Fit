@@ -5,7 +5,7 @@
   background-color: #DA7825;
   padding: 20px;
   border-radius: 10px;
-  width: 15%;
+  width: 20%;
   height: 350px;
   cursor: pointer;
   box-shadow: 8px 5px 8px;
@@ -32,26 +32,26 @@
 
 .exercises {
   justify-content: center;
-  margin-left: 20%;
+  margin-left: 25%;
   margin-top: 0;
 }
 
 .exercises h3 {
   margin-top: 0px;
-  margin-bottom: 0px;
+  margin-bottom: 15px;
+  text-decoration: underline;
 }
 
 .exercises p {
   display: flex;
   justify-content: center;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-bottom: 2px;
 }
 
 .line {
   border-right: 5px solid;
   margin-left: 10%;
-  margin-top: -6.6%;
+  margin-top: -5%;
   height: 111%;
 }
 
