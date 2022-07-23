@@ -13,6 +13,7 @@
 
 .header {
   position: relative;
+  color: #333232;
 }
 
 .header h2 {
@@ -32,8 +33,10 @@
 
 .exercises {
   justify-content: center;
-  margin-left: 25%;
+  margin-left: 20%;
+  width: 40%;
   margin-top: 0;
+  color: #333232;
 }
 
 .exercises h3 {
@@ -73,12 +76,26 @@
     margin-left: 10%;
     margin-top: -4.5%;
   }
+
+  .exercises {
+    margin-left: 20%;
+    width: 35%;
+  }
 }
 
 @media all and (max-width: 800px) {
   .WorkoutCard {
-    width: 50%;
+    width: 55%;
   }
 
-  
+  .exercises {
+    margin-left: 20%;
+    width: 30%;
+  }
+
+  .line {
+    border-right: 5px solid;
+    margin-left: 10%;
+    margin-top: -5%;
+  }
 }

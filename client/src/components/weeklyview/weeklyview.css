@@ -1,5 +1,6 @@
 .WeeklyTitle {
   display: flex;
+  color: #535151;
 }
 
 .WeeklyDays {

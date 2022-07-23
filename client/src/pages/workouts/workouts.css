@@ -2,6 +2,10 @@
   overflow: hidden;
 }
 
+.Title {
+  color: #535151;
+}
+
 .addWorkoutButton {
   position: fixed;
   bottom: 0;

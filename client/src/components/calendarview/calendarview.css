@@ -9,15 +9,21 @@ body {
   margin-left: 40px;
 }
 
+.monthTitle {
+  color: #535151;
+}
+
 .arrow {
   margin: 30px;
   cursor: pointer;
+  color: #535151;
 }
 
 .dayNames {
   display: flex;
   flex-direction: row;
   margin-left: 8%;
+  color: #535151;
 }
 
 .dayNames p {
@@ -36,6 +42,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   margin-left: 220px;
+  color: #333232;
 }
 
 @media all and (max-width: 1800px) {

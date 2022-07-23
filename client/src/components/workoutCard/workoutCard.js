@@ -12,7 +12,7 @@ function WorkoutCard({ workout }) {
   return (
     <div className="WorkoutCard" onClick={() => setModalOpen(true) }>
       <div className="header">
-        <h2>{workout.name}</h2>
+        <h2 className="workoutName">{workout.name}</h2>
         <h3>Days</h3>
         {workout.days.map((day) => {
           return (
