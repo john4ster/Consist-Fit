@@ -67,7 +67,7 @@ function NewWorkoutModal({ modalOpen, closeModalCallback }) {
         days: days,
         shownOnWeekly: shownOnWeeklyView,
       }
-      axios.post('/api/addWorkout', info)
+      axios.post('/api/workouts/addWorkout', info)
       .then(res => {
         resetModal();
         closeModalCallback();

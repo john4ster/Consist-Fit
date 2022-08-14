@@ -1,7 +1,7 @@
 import './calendarday.css';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 
@@ -16,7 +16,7 @@ function CalendarDay({ date, checked }) {
       date: date.setHours(0, 0, 0, 0),
       checked: checked,
     }
-    axios.post('/api/checkDate', info)
+    axios.post('/api/dates/checkDate', info)
     .then(res => {
       console.log(res);
     })

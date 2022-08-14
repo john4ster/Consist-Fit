@@ -11,7 +11,7 @@ function WeeklyView({ today, checkedDates }) {
 
   useEffect(() => {
     //Make a request to the server to get workouts so we can display the appropriate workout on each day
-    axios.get('/api/userData/workouts', { params: {userID} })
+    axios.get('/api/workouts/userWorkouts', { params: {userID} })
     .then(res => {
       setWorkouts(res.data);
     })

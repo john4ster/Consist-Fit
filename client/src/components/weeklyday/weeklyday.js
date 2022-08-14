@@ -27,7 +27,7 @@ function WeeklyDay({ day, date, workoutCompleted, workouts }) {
       date: date.setHours(0, 0, 0, 0),
       checked: workoutCompleted,
     }
-    axios.post('/api/checkDate', info)
+    axios.post('/api/dates/checkDate', info)
     .then(res => {
       console.log(res);
     })
