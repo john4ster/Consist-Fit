@@ -21,7 +21,9 @@ Consist Fit is a web app focused on one thing: helping users stay consistent wit
 * It also uses the browser's local storage to store the user, so the user stays logged in if they revisit the page
 
 # Usage
-Consist-Fit is available to use at the following URL: https://consist-fit.onrender.com/
+Consist-Fit is available to use at the following URL. Since render is a free hosting service, it may take a few minutes to start up.
+
+https://consist-fit.onrender.com/
 
 If you'd like to try the app without making an account, you can use a sample account with the following credentials:
 
