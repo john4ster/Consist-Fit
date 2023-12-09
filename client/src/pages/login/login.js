@@ -1,6 +1,6 @@
 import './login.css';
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
@@ -45,17 +45,22 @@ function Login() {
           type="email" 
           required 
           className="loginInput" 
-          onChange={e => setEmail(e.target.value)}/>
+          onChange={e => setEmail(e.target.value)}
+          autoComplete="off"/>
           <input 
           placeholder="Password" 
           type="password" 
           required 
           className="loginInput"
-          onChange={e => setPassword(e.target.value)}/>
+          onChange={e => setPassword(e.target.value)}
+          autoComplete="off"/>
           <button className="loginButton">Login</button>
         </form>
-        <p className="registerText">Don't have an account?</p>
-        <Link to="/register">Sign Up Here</Link>
+        <Link to="/forgotPassword">Forgot Password?</Link>
+        <div className="dontHaveAccountMenu">
+          <p className="registerText">Don't have an account?</p>
+          <Link to="/register">Sign Up Here</Link>
+        </div>
       </div>
     </div>
   );
