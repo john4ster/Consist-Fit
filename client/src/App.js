@@ -21,7 +21,7 @@ function App() {
             <Route path="/" element={userID ? <Home /> : <Login />} />
             <Route path="/register" element={userID ? <Home /> : <Register />} />
             <Route path="/forgotPassword" element= {userID ? <Home /> : <ForgotPassword /> } />
-            <Route path="/resetPassword/:id/:token" element={userID ? <Home /> : <ResetPassword /> } />
+            <Route path="/resetPassword/:id/:token" element={ <ResetPassword /> } />
             <Route path="/workouts" element={ <Workouts /> } />
             <Route path="/calendar" element={ <Calendar /> } />
           </Routes>
