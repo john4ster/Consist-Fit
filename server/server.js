@@ -18,10 +18,6 @@ mongoose.connect(process.env.DATABASE_LINK);
 
 app.use('/', express.static(path.join(__dirname, '../client/build')));
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 //Setup routes
 app.use('/api/auth', authRoutes);
 app.use('/api/workouts', workoutRoutes);
