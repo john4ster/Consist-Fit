@@ -94,6 +94,7 @@ function EditWorkoutModal({ modalOpen, workout, closeModalCallback }) {
 
       <div className="leftHalf">
         <h1 className="editWorkoutTitle">Edit Workout</h1>
+        <div className="workoutTitleAndDelete">
           <input 
           type="text" 
           placeholder="Workout Name" 
@@ -102,6 +103,7 @@ function EditWorkoutModal({ modalOpen, workout, closeModalCallback }) {
           className="workoutNameInput"
           onChange={e => setNewWorkoutName(e.target.value)}/>
           <button className="deleteButton" onClick={(e) => deleteWorkout(e)}>Delete Workout</button>
+        </div>
         <div className="daySelection">
           <h1>Select Days</h1>
           <label>

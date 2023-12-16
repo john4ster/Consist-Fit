@@ -6,15 +6,18 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar({ homeSelected, workoutsSelected, calendarSelected }) {
   
   const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogout = (e) => {
     e.preventDefault();
     if (window.confirm("Are you sure you want to log out?")) {
       dispatch({ type: "LOGOUT" });
+      navigate('/');
     }
   } 
 
