@@ -8,6 +8,17 @@
 }
 
 @media all and (max-width: 1800px) {
+  .WeeklyTitle {
+    margin-top: 10%;
+  }
+  
+  .WeeklyDays {
+    display: flex;
+    width: 15%;
+  }
+}
+
+@media all and (max-width: 800px) {
   .WeeklyDays {
     display: flex;
     flex-direction: column;

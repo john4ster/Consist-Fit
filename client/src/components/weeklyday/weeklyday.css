@@ -78,23 +78,83 @@ body {
   font-size: 18px;
 }
 
-@media all and (max-width: 1800px) {
+@media all and (max-width: 1600px) {
   .WeeklyDay {
     background-color: white;
     height: 330px;
-    width: 80.5%;
+    width: 250px;
     margin-bottom: 25px;
   }
+
   .TodayWeeklyDay {
     height: 330px;
-    width: 80.5%;
+    width: 250px;
     box-shadow: 8px 5px 5px;
     background-color: white;
     outline-color: #DA7825;
     outline-style: solid;
-    outline-width: 6px;
+    outline-width: 8px;
     border-radius: 2px;
     z-index: 99;
     margin-bottom: 25px;
+  }
+
+  .dayDate {
+    padding: 10px;
+    height: 127px;
+    width: 90%;
+    outline-color: #535151;
+    outline-style: solid;
+    border-radius: 2px;
+  }
+  
+  .day {
+    margin-bottom: 0px;
+    font-size: 23px;
+    color: #535151;
+  }
+  
+  .date {
+    font-weight: normal;
+    font-size: 13px;
+    margin-top: 0px;
+    outline-color: #535151;
+  }
+  .status {
+    padding: 10px;
+    width: 170px;
+    height: 161px;
+    outline-color: #535151;
+    outline-style: solid;
+    margin-bottom: 10px;
+  }
+  .workout {
+    justify-content: center;
+    background-color: #DA7825;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 5px;
+    font-size: 15px;
+  }
+  .blankWorkout {
+    justify-content: center;
+    background-color: #9b9794;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 5px;
+    font-size: 15px;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .dayDate {
+    width: 96%;
+    outline-color: #535151;
+    outline-style: solid;
+    border-radius: 2px;
+  }
+  
+  .status {
+    width: 240px;
   }
 }
