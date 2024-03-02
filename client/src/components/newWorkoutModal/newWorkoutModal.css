@@ -150,7 +150,7 @@
   }
   
   .newWorkoutTitle {
-    font-size: 50px;
+    font-size: 30px;
   }
   
   .workoutNameInput {
@@ -163,6 +163,10 @@
 
   .middleHeader {
     width: 40%;
+  }
+
+  .saveButton {
+    margin-top: 510%;
   }
 }
 

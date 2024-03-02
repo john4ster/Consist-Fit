@@ -7,7 +7,7 @@ const key = require('weak-key');
 //Will return exercises with a new exercise slot added
 export const addExerciseSlot = (exercises) => { 
   let exKey = key({}); //Generate key to be used in input
-  if (exercises.length < 11) {
+  if (exercises.length < 8) {
     return [...exercises, {id: exKey}];
   }
   else {

@@ -31,7 +31,6 @@
 }
 
 .exercises {
-  justify-content: center;
   margin-left: 20%;
   width: 40%;
   color: #333232;
@@ -47,6 +46,10 @@
   display: flex;
   justify-content: center;
   margin-bottom: 2px;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 2%;
+  word-wrap: break-word;
 }
 
 .line {

@@ -125,6 +125,7 @@
 
 .middleInputs input { 
   font-size: 20px;
+  height: 3%;
 }
 
 .rightHalf {
@@ -165,8 +166,36 @@
     margin-left: 25%;
   }
   
+  .daySelection {
+    height: 55%;
+  }
+
+  .daySelection h1 {
+    font-size: 20px;
+    margin-top: -5%;
+  }
+
   .daySelection input {
     width: 50px;
+    margin-bottom: 0px;
+    margin-top: -5%;
+  }
+
+  .daySelection label {
+    font-size: 20px;
+    margin-bottom: 0px;
+  }
+
+  .editWorkoutTitle {
+    font-size: 30px;
+  }
+
+  .workoutTitleAndDelete input {
+    font-size: 20px;
+  }
+
+  .weeklyViewSelection label {
+    font-size: 20px;
   }
 
   .weeklyViewSelection input {
@@ -175,6 +204,18 @@
 
   .closeButton {
     right: 4%;
+  }
+
+  .middleInputs {
+    height: 75%;
+  }
+
+  .middleInputs input { 
+    font-size: 20px;
+  }
+
+  .saveChanges {
+    margin-top: 510%;
   }
 }
 
